@@ -13,10 +13,13 @@ export class Dashboard extends React.Component {
 
   render() {
     return <div>
+      Click to increment
       { this.addToggle(0) }
       { this.addToggle(1) }
       { this.addToggle(2) }
       { this.addToggle(3) }
+
+      The Dashboard knows that the current state of the toggles is { this.state.values }
     </div>
   }
 
