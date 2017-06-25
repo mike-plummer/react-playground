@@ -1,0 +1,20 @@
+.toggle {
+    padding: 20px;
+    font-size: 2em;
+}
+
+.toggle0 {
+    background: lightblue;
+}
+
+.toggle1 {
+    background: lightgreen;
+}
+
+.toggle2 {
+    background: lightpink;
+}
+
+.toggle3 {
+    background: lightyellow;
+}
