@@ -1,36 +1,47 @@
 import React from 'react';
 
 import { Toggle } from './Toggle';
+import { UserInput } from './UserInput';
+import { ActionTypes } from './../reducer';
 
 export class Dashboard extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      values: [1, 2, 3, 4]
-    };
+  componentWillMount() {
+    this.props.store.subscribe(() => {
+      const { toggles, userInput } = this.props.store.getState();
+
+      this.setState({
+        toggles,
+        userInput
+      });
+    })
   }
 
   render() {
+    const { toggles, userInput } = this.props.store.getState();
+
     return <div>
       Click to increment
-      { this.addToggle(0) }
-      { this.addToggle(1) }
-      { this.addToggle(2) }
-      { this.addToggle(3) }
 
-      The Dashboard knows that the current state of the toggles is { this.state.values }
+      <div>
+        { toggles.map( (value, index) => this.addToggle(index, value)) }
+      </div>
+
+      The Dashboard knows that the current state of the toggles is { toggles }
+
+      <br />
+
+      <UserInput store = { this.props.store } />
+
+      The user typed in { userInput }
     </div>
   }
 
-  addToggle(index) {
-    return <Toggle value={this.state.values[index]}
-                   onClick={
-                     () => {
-                       this.state.values[index]++;
-                       this.setState(this.state);
-                     }
-                   }
+  addToggle(index, value) {
+    return <Toggle store = { this.props.store }
+                   key = { index }
+                   index = { index }
+                   value = { value }
     />
   }
 }

@@ -7,6 +7,7 @@ module.exports = options => {
     resolve: {
       extensions: ['.js', '.jsx']
     },
+    devtool: "inline-source-map",
     module: {
       rules: [
         {
